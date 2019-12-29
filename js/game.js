@@ -1,14 +1,15 @@
 'use strict';
 
+
 window.GameConstants = {
   Fireball: {
-    size: window.fireballSize || 24,
+    size: window.fireballSize || 50,
     speed: window.getFireballSpeed || function (movingLeft) {
-      return movingLeft ? 2 : 5;
+      return 10;
     }
   },
   Wizard: {
-    speed: window.wizardSpeed || 2,
+    speed: window.wizardSpeed || 3,
     width: window.wizardWidth || 61,
     getHeight: window.getWizardHeight || function (width) {
       return 1.377 * width;
@@ -451,11 +452,11 @@ window.Game = (function () {
             }));
             return;
           }
-          message = 'Вы победили Газебо!\nУра!';
-          break;
-        case Verdict.FAIL:
-          message = 'Вы проиграли!';
-          break;
+        //   message = 'Вы победили Газебо!\nУра!';
+        //   break;
+        // case Verdict.FAIL:
+        //   message = 'Вы проиграли!';
+        //   break;
         case Verdict.PAUSE:
           message = 'Игра на паузе!\nНажмите Пробел, чтобы продолжить';
           break;
