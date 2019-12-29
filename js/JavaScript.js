@@ -32,11 +32,24 @@ let graph = function(ctx, players, times) {
     ctx.fillText('Поздравляем вы победили ужастного Гезбо', consts.NAME_LOCATION_WIDTH, 60);
     ctx.font = 'Sans';
     for(let i = players.length; i >= 1; i--) {
-        ctx.fillText(players[i -1], consts.NAME_LOCATION_WIDTH,282 - 48 * i);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
-        ctx.fillRect(200 + 5, consts.HIGHEST_NUMBER - 46 * i + 5, (consts.DIAGRAM_WIDTH * times[i - 1] / max), consts.DIAGRAM_HEIGTH);
-        ctx.fillStyle = '#000';
-        ctx.fillRect(200, consts.HIGHEST_NUMBER - 46 * i, (consts.DIAGRAM_WIDTH * times[i - 1] / max), consts.DIAGRAM_HEIGTH);
+        if(players[i - 1] === 'Вы') {
+            ctx.fillStyle = '#000';
+            ctx.fillText(players[i -1], consts.NAME_LOCATION_WIDTH,282 - 48 * i);
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.3)';
+            ctx.fillRect(200 + 5, consts.HIGHEST_NUMBER - 46 * i + 5, (consts.DIAGRAM_WIDTH * times[i - 1] / max), consts.DIAGRAM_HEIGTH);
+            ctx.fillStyle = 'rga(255, 0, 0, 1)';
+            ctx.fillRect(200, consts.HIGHEST_NUMBER - 46 * i, (consts.DIAGRAM_WIDTH * times[i - 1] / max), consts.DIAGRAM_HEIGTH);
+        } 
+        else
+        {
+            let color = Math.random() * (255 - 50) + 50;
+            ctx.fillStyle = '#000';
+            ctx.fillText(players[i -1], consts.NAME_LOCATION_WIDTH,282 - 48 * i);
+            ctx.fillStyle = 'rgba(0, 0, ' + color + ', 0.3)';
+            ctx.fillRect(200 + 5, consts.HIGHEST_NUMBER - 46 * i + 5, (consts.DIAGRAM_WIDTH * times[i - 1] / max), consts.DIAGRAM_HEIGTH);
+            ctx.fillStyle = 'rgba(0, 0, ' + color + ', 1)';
+            ctx.fillRect(200, consts.HIGHEST_NUMBER - 46 * i, (consts.DIAGRAM_WIDTH * times[i - 1] / max), consts.DIAGRAM_HEIGTH);
+        }
     }
 }
 
