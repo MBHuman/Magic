@@ -13,19 +13,23 @@ let wizards = [
     // name, coat color
     {
         name: WIZARD_NAMES[0],
-        coatColor: 'rgb(241, 43, 107)'
+        coatColor: 'rgb(241, 43, 107)',
+        eyeColor: 'red'
     },
     {
         name: WIZARD_NAMES[1],
-        coatColor: 'rgb(215, 210, 55'
+        coatColor: 'rgb(215, 210, 55)',
+        eyeColor: 'black'
     },
     {
         name: WIZARD_NAMES[2],
-        coatColor: 'rgb(101, 67, 109'
+        coatColor: 'rgb(101, 67, 109)',
+        eyeColor: 'green'
     },
     {
         name: WIZARD_NAMES[3],
-        coatColor: 'rgb(79, 167, 85)'
+        coatColor: 'rgb(79, 167, 85)',
+        eyeColor: 'yellow'
     }
 ];
 
@@ -39,5 +43,6 @@ for(let i = 0; i < 4; i++) {
     let wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
     wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyeColor;
     similarListElement.appendChild(wizardElement);
 }
