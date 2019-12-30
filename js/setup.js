@@ -68,8 +68,7 @@ let characters = [
         coatColor: 'rgb(73, 124, 181)',
         eyesColor: 'yellow'
     }
-]
-
+];//Данные для вывода при показе похожих игроков
 let isHave = function(prop, num) {
     let flag = false;
     for(let i = 0; i < prop.nums.length; i++) {
@@ -83,7 +82,6 @@ let isHave = function(prop, num) {
     return flag;
 }
 
-let chr = characters.slice();
 let rnd = function(chr) {
     let prop = {
         arr: [],
@@ -98,12 +96,14 @@ let rnd = function(chr) {
     return(prop.arr);
 }
 
+let chr = characters.slice();
+let arr = rnd(chr);
+
 let SimilarListElement = document.querySelector('.setup-similar-list');
 let SimilarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-let arr = rnd(chr);
 for(let i = 0; i < 4; i++) {
     let wizardElement = SimilarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = arr[i].name;
