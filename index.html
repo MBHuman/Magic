@@ -63,7 +63,7 @@
   <div class="demo"></div>
 
   <div class="setup-open">
-    <img src="./img/user-1.jpg" class="setup-open-icon">
+    <img src="./img/user-1.jpg" class="setup-open-icon" tabindex="0">
   </div>
 </header>
 
@@ -81,12 +81,13 @@
         </div>
         <label>
           <input type="text" name="username"
+                 minlength="3"
                  maxlength="25" required
                  class="setup-user-name" value="Синий Пендальф"/>
         </label>
       </div>
 
-      <span class="setup-close">&times;</span>
+      <span class="setup-close" tabindex="0">&times;</span>
     </div>
 
 
@@ -153,6 +154,7 @@
         <h4 class="setup-similar-title">Похожие персонажи</h4>
 
         <div class="setup-similar-list"><!--Список похожих персонажей--></div>
+        <!-- <div class="setup-similar-list></div>  -->
       </div>
 
       <button class="button setup-submit">Сохранить</button>
@@ -181,11 +183,10 @@
   </div>
 </template>
 
+<script src ="js/openUserMenu.js"></script>
 <script src ="js/JavaScript.js"></script>
 <script src ="js/game.js"></script>
 <script src ="js/JavaScript2.js"></script>
 <script src ="js/setup.js"></script>
-<script src ="js/functions.js"></script>
-<script src ="js/names.js"></script>
 </body>
 </html>

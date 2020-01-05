@@ -1,11 +1,44 @@
 'use strict';
-document.querySelector('.setup').classList.remove('hidden');
 document.querySelector('.setup-similar').classList.remove('hidden');
 
-let characters = [
+let ENTER = 13;
+let ESC = 27;
+
+let FIREBALL__COLORS = [
+    '#ee4830',
+    '#30a8ee',
+    '#5ce6c0',
+    '#e848d5',
+    '#e6e848'
+];
+
+let COAT__COLORS = [
+    'rgb(101, 137, 164)',
+    'rgb(241, 43, 107)',
+    'rgb(147, 100, 161',
+    'rgb(56, 159, 117)',
+    'rgb(215, 210, 55',
+    'rgb(0, 0, 0)'
+];
+
+let EYES__COLORS = [
+    'black',
+    'red',
+    'blue',
+    'yellow',
+    'green'
+];
+
+
+let CHARACTERS = [
     {
         name: 'Коля Уничтожитель',
         coatColor: 'rgb(200, 100, 150)',
+        eyesColor: 'red'
+    },
+    {
+        name: 'Охранник пятёрочки',
+        coatColor: 'rgb(0, 0, 0)',
         eyesColor: 'red'
     },
     {
@@ -96,8 +129,9 @@ let rnd = function(chr) {
     return(prop.arr);
 }
 
-let chr = characters.slice();
+let chr = CHARACTERS.slice();
 let arr = rnd(chr);
+
 
 let SimilarListElement = document.querySelector('.setup-similar-list');
 let SimilarWizardTemplate = document.querySelector('#similar-wizard-template')
@@ -112,3 +146,85 @@ for(let i = 0; i < 4; i++) {
     SimilarListElement.appendChild(wizardElement);
 }
 
+/**
+ * Open close window of character
+ */
+let setup = document.querySelector('.setup');
+let setupOpen = document.querySelector('.setup-open');
+let setupClose = document.querySelector('.setup-close');
+let onPopupEscPress = function() {
+    document.addEventListener('keydown', function(evt) {
+        if(evt.keyCode === ESC) {
+            setup.classList.add('hidden');
+        }
+    });
+}
+let open = function() {
+    setup.classList.remove('hidden');
+}
+let close = function() {
+    setup.classList.add('hidden');
+}
+setupOpen.addEventListener('click', function() {
+    open();
+});
+setupOpen.addEventListener('keydown', function(evt) {
+    if(evt.keyCode === ENTER) {
+        open();
+        onPopupEscPress();
+    }
+});
+setupClose.addEventListener('click', function() {
+    close();
+});
+setupClose.addEventListener('keydown', function(evt) {
+    if(evt.keyCode === ENTER) {
+        close();
+    }
+});
+/**
+ * 
+ * @param {*} arr
+ * return random element 
+ */
+let random = function(arr) {
+    return arr[Math.floor(Math.random() * (arr.length - 1))];
+}
+
+/**
+ * Code for change Coat color by click
+ */
+let clickCharacterCoat = document.querySelector('.wizard-coat');
+clickCharacterCoat.addEventListener('click', function() {
+    clickCharacterCoat.style = 'fill: ' + random(COAT__COLORS);
+});
+/**
+ * Code for change eye color by click
+ */
+let clickCharacterEye = document.querySelector('.wizard-eyes')
+clickCharacterEye.addEventListener('click', function() {
+    clickCharacterEye.style = 'fill: ' + random(EYES__COLORS);
+})
+/**
+ * Code for change background for fireball
+ */
+let clickCharacterFireball = document.querySelector('.setup-fireball-wrap');
+clickCharacterFireball.addEventListener('click', function() {
+    clickCharacterFireball.style = 'background: ' + random(FIREBALL__COLORS);
+});
+/**
+ * Validation code
+ */
+let userNameInput = document.querySelector('.setup-user-name')
+
+userNameInput.addEventListener('invalid', function(evt) {
+    if(userNameInput.validity.tooShort) {
+        userNameInput.setCustomValidity('Имя надо хотя бы из 2 симоволов');
+    } else if(userNameInput.validity.tooLong) {
+        userNameInput.setCustomValidity('Имя должно содержаь хотя бы 2 символа');
+    }else if(userNameInput.validity.valueMissing) {
+        userNameInput.setCustomValidity('Поле обязательно');
+    }else {
+        userNameInput.setCustomValidity('');
+    }
+});
